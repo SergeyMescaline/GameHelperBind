@@ -19,7 +19,7 @@ encoding.default = 'CP1251'
 u8 = encoding.UTF8
 
 --local stateIni = inicfg.save(mainIni, directIni)
-local playerTargeting = -1 -- переменная для id игрока на прицеле
+local playerTargeting = -1 -- ГЇГҐГ°ГҐГ¬ГҐГ­Г­Г Гї Г¤Г«Гї id ГЁГЈГ°Г®ГЄГ  Г­Г  ГЇГ°ГЁГ¶ГҐГ«ГҐ
 
 
 local toggle = false
@@ -32,10 +32,10 @@ local wind = imgui.ImBool(false)
 local settings_window = imgui.ImBool(false)
 
 local items = {
-	u8"Красная тема",
-	u8"Коричневая тема",
-	u8"Зелёно-голубая тема",
-	u8"Голубая тема"
+	u8"ГЉГ°Г Г±Г­Г Гї ГІГҐГ¬Г ",
+	u8"ГЉГ®Г°ГЁГ·Г­ГҐГўГ Гї ГІГҐГ¬Г ",
+	u8"Г‡ГҐГ«ВёГ­Г®-ГЈГ®Г«ГіГЎГ Гї ГІГҐГ¬Г ",
+	u8"ГѓГ®Г«ГіГЎГ Гї ГІГҐГ¬Г "
 }
 local def = {
 	settings = {
@@ -57,14 +57,11 @@ function imgui.OnDrawFrame()
 	if ini.settings.theme == 2 then
 	blue_green_style()
 	end
-	if ini.settings.theme == 3 then
-	light_blue_style()
-	end
   if wind.v then
   
 	local sw, sh = getScreenResolution()
-    imgui.SetNextWindowPos(imgui.ImVec2(sw / 2, sh / 2), imgui.Cond.FirstUseEver, imgui.ImVec2(0.5, 0.5)) --положение
-    imgui.SetNextWindowSize(imgui.ImVec2(596, 500), imgui.Cond.FirstUseEver)--размер
+    imgui.SetNextWindowPos(imgui.ImVec2(sw / 2, sh / 2), imgui.Cond.FirstUseEver, imgui.ImVec2(0.5, 0.5)) --ГЇГ®Г«Г®Г¦ГҐГ­ГЁГҐ
+    imgui.SetNextWindowSize(imgui.ImVec2(596, 500), imgui.Cond.FirstUseEver)--Г°Г Г§Г¬ГҐГ°
     
 	imgui.Begin('GameHelperBind', wind)
 		imgui.PushItemWidth(150)
@@ -74,105 +71,105 @@ function imgui.OnDrawFrame()
 				inicfg.save(def, directIni)
 			end imgui.PopItemWidth()
 	
-	--Игрок на прицеле (для взаимодействия)
+	--Г€ГЈГ°Г®ГЄ Г­Г  ГЇГ°ГЁГ¶ГҐГ«ГҐ (Г¤Г«Гї ГўГ§Г ГЁГ¬Г®Г¤ГҐГ©Г±ГІГўГЁГї)
 	imgui.BeginChild('##hide', imgui.ImVec2(580, 30), true)
 		if (playerTargeting >= 0) then
 			local name = sampGetPlayerNickname(tostring(playerTargeting))
-			imgui.Text(u8'Цель: '..name..'('..tostring(playerTargeting)..')')
-			imgui.SameLine( ) ShowHelpMarker(u8'Прицельтесь (ПКМ) в игрока, чтобы захватить его ID!')
+			imgui.Text(u8'Г–ГҐГ«Гј: '..name..'('..tostring(playerTargeting)..')')
+			imgui.SameLine( ) ShowHelpMarker(u8'ГЏГ°ГЁГ¶ГҐГ«ГјГІГҐГ±Гј (ГЏГЉГЊ) Гў ГЁГЈГ°Г®ГЄГ , Г·ГІГ®ГЎГ» Г§Г ГµГўГ ГІГЁГІГј ГҐГЈГ® ID!')
 			imgui.SameLine()
 			if imgui.Button(u8'Check LVL') then
 				sampSendChat("/id "..tostring(playerTargeting))
 			end
 		end
 		if (playerTargeting < 0) then
-			imgui.Text(u8'Цель: нет')
-			imgui.SameLine( ) ShowHelpMarker(u8'Прицельтесь (ПКМ) в игрока, чтобы захватить его ID!')
+			imgui.Text(u8'Г–ГҐГ«Гј: Г­ГҐГІ')
+			imgui.SameLine( ) ShowHelpMarker(u8'ГЏГ°ГЁГ¶ГҐГ«ГјГІГҐГ±Гј (ГЏГЉГЊ) Гў ГЁГЈГ°Г®ГЄГ , Г·ГІГ®ГЎГ» Г§Г ГµГўГ ГІГЁГІГј ГҐГЈГ® ID!')
 		end
 	imgui.EndChild()
 	-----------------------------------------------------------
-	--Кнопки
+	--ГЉГ­Г®ГЇГЄГЁ
 	
-	--1 блок
+	--1 ГЎГ«Г®ГЄ
 	-----------------------------------------------------------
 	imgui.BeginChild('##1', imgui.ImVec2(190, 180), true)
 	local btn_size = imgui.ImVec2(-0.1, 0)
-	imgui.Text(u8'Общение')
+	imgui.Text(u8'ГЋГЎГ№ГҐГ­ГЁГҐ')
 	imgui.Separator()
-		if imgui.Button(u8'Привет!', btn_size) then
-		  sampSendChat("Привет!")
+		if imgui.Button(u8'ГЏГ°ГЁГўГҐГІ!', btn_size) then
+		  sampSendChat("ГЏГ°ГЁГўГҐГІ!")
 		end
-		if imgui.Button(u8'[fam] Привет!', btn_size) then
-		  sampSendChat("/fam Привет!")
+		if imgui.Button(u8'[fam] ГЏГ°ГЁГўГҐГІ!', btn_size) then
+		  sampSendChat("/fam ГЏГ°ГЁГўГҐГІ!")
 		end
-		if imgui.Button(u8'[fam] Велком!', btn_size) then
-		  sampSendChat("/fam Добро пожаловать в нашу дружную семью!")
+		if imgui.Button(u8'[fam] Г‚ГҐГ«ГЄГ®Г¬!', btn_size) then
+		  sampSendChat("/fam Г„Г®ГЎГ°Г® ГЇГ®Г¦Г Г«Г®ГўГ ГІГј Гў Г­Г ГёГі Г¤Г°ГіГ¦Г­ГіГѕ Г±ГҐГ¬ГјГѕ!")
 		end
-		if imgui.Button(u8'[fam] С ДР!', btn_size) then
-		  sampSendChat("/fam Поздравляю с Днём рождения! Счастья, здоровья, долгих лет жизни!")
+		if imgui.Button(u8'[fam] Г‘ Г„Гђ!', btn_size) then
+		  sampSendChat("/fam ГЏГ®Г§Г¤Г°Г ГўГ«ГїГѕ Г± Г„Г­ВёГ¬ Г°Г®Г¦Г¤ГҐГ­ГЁГї! Г‘Г·Г Г±ГІГјГї, Г§Г¤Г®Г°Г®ГўГјГї, Г¤Г®Г«ГЈГЁГµ Г«ГҐГІ Г¦ГЁГ§Г­ГЁ!")
 		end
 	imgui.EndChild()
 	------------------------------------------------------------
 	
-	imgui.SameLine() -- Для того, чтоб блоки шли в одну строку
+	imgui.SameLine() -- Г„Г«Гї ГІГ®ГЈГ®, Г·ГІГ®ГЎ ГЎГ«Г®ГЄГЁ ГёГ«ГЁ Гў Г®Г¤Г­Гі Г±ГІГ°Г®ГЄГі
 	
-	--2 блок
+	--2 ГЎГ«Г®ГЄ
 	------------------------------------------------------------
 	imgui.BeginChild('##2', imgui.ImVec2(190, 180), true)
-	imgui.Text(u8'Оскнуть мудака')
+	imgui.Text(u8'ГЋГ±ГЄГ­ГіГІГј Г¬ГіГ¤Г ГЄГ ')
 	imgui.Separator()
-		if imgui.Button(u8'Смотри куда едешь, пидорас!', btn_size) then
-		  sampSendChat("/s Смотри куда едешь, пидорас!")
+		if imgui.Button(u8'Г‘Г¬Г®ГІГ°ГЁ ГЄГіГ¤Г  ГҐГ¤ГҐГёГј, ГЇГЁГ¤Г®Г°Г Г±!', btn_size) then
+		  sampSendChat("/s Г‘Г¬Г®ГІГ°ГЁ ГЄГіГ¤Г  ГҐГ¤ГҐГёГј, ГЇГЁГ¤Г®Г°Г Г±!")
 		end
-		if imgui.Button(u8'Хуйло ебаное!', btn_size) then
-		  sampSendChat("/s Хуйло ебаное!")
+		if imgui.Button(u8'Г•ГіГ©Г«Г® ГҐГЎГ Г­Г®ГҐ!', btn_size) then
+		  sampSendChat("/s Г•ГіГ©Г«Г® ГҐГЎГ Г­Г®ГҐ!")
 		end
-		if imgui.Button(u8'Завали ебало!', btn_size) then
-		  sampSendChat("/s Завали ебало, обоссаный!")
+		if imgui.Button(u8'Г‡Г ГўГ Г«ГЁ ГҐГЎГ Г«Г®!', btn_size) then
+		  sampSendChat("/s Г‡Г ГўГ Г«ГЁ ГҐГЎГ Г«Г®, Г®ГЎГ®Г±Г±Г Г­Г»Г©!")
 		end
 	imgui.EndChild()
 	------------------------------------------------------------
 	
-	imgui.SameLine() -- Для того, чтоб блоки шли в одну строку
+	imgui.SameLine() -- Г„Г«Гї ГІГ®ГЈГ®, Г·ГІГ®ГЎ ГЎГ«Г®ГЄГЁ ГёГ«ГЁ Гў Г®Г¤Г­Гі Г±ГІГ°Г®ГЄГі
 	
-	--3 блок
+	--3 ГЎГ«Г®ГЄ
 	------------------------------------------------------------
 	imgui.BeginChild('##3', imgui.ImVec2(190, 180), true)
-	imgui.Text(u8'Денежные операции')
+	imgui.Text(u8'Г„ГҐГ­ГҐГ¦Г­Г»ГҐ Г®ГЇГҐГ°Г Г¶ГЁГЁ')
 	imgui.Separator()
-		if imgui.Button(u8'Трейд', btn_size) then
+		if imgui.Button(u8'Г’Г°ГҐГ©Г¤', btn_size) then
 		  sampSendChat("/trade "..tostring(playerTargeting))
 		end
-		if imgui.Button(u8'Передать 10к', btn_size) then
+		if imgui.Button(u8'ГЏГҐГ°ГҐГ¤Г ГІГј 10ГЄ', btn_size) then
 		  sampSendChat("/pay "..tostring(playerTargeting).." 10000")
 		end
-		if imgui.Button(u8'Передать 20к', btn_size) then
+		if imgui.Button(u8'ГЏГҐГ°ГҐГ¤Г ГІГј 20ГЄ', btn_size) then
 		  sampSendChat("/pay "..tostring(playerTargeting).." 20000")
 		end
-		if imgui.Button(u8'Передать 30к', btn_size) then
+		if imgui.Button(u8'ГЏГҐГ°ГҐГ¤Г ГІГј 30ГЄ', btn_size) then
 		  sampSendChat("/pay "..tostring(playerTargeting).." 30000")
 		end
-		if imgui.Button(u8'Передать 40к', btn_size) then
+		if imgui.Button(u8'ГЏГҐГ°ГҐГ¤Г ГІГј 40ГЄ', btn_size) then
 		  sampSendChat("/pay "..tostring(playerTargeting).." 40000")
 		end
-		if imgui.Button(u8'Передать 50к', btn_size) then
+		if imgui.Button(u8'ГЏГҐГ°ГҐГ¤Г ГІГј 50ГЄ', btn_size) then
 		  sampSendChat("/pay "..tostring(playerTargeting).." 50000")
 		end
 	imgui.EndChild()
 	------------------------------------------------------------
 	
-	--imgui.SameLine() -- Не нужна, т.к. в этом месте блок 4 идёт с новой строки
+	--imgui.SameLine() -- ГЌГҐ Г­ГіГ¦Г­Г , ГІ.ГЄ. Гў ГЅГІГ®Г¬ Г¬ГҐГ±ГІГҐ ГЎГ«Г®ГЄ 4 ГЁГ¤ВёГІ Г± Г­Г®ГўГ®Г© Г±ГІГ°Г®ГЄГЁ
 	
-	--4 блок
+	--4 ГЎГ«Г®ГЄ
 	------------------------------------------------------------
 	imgui.BeginChild('##4', imgui.ImVec2(190, 180), true)
-	imgui.Text(u8'Читы')
+	imgui.Text(u8'Г—ГЁГІГ»')
 	imgui.Separator()
 		
-		if imgui.Button(u8'Еда', btn_size) then
+		if imgui.Button(u8'Г…Г¤Г ', btn_size) then
 		  sampSendClickTextdraw(mainIni.tdid.eat)
 		end
-		if imgui.Button(u8'Хилл', btn_size) then
+		if imgui.Button(u8'Г•ГЁГ«Г«', btn_size) then
 		  sampSendClickTextdraw(mainIni.tdid.hp)
 		end
 	imgui.EndChild()
@@ -180,18 +177,18 @@ function imgui.OnDrawFrame()
 	
 	imgui.SameLine()
 	
-	--5 блок
+	--5 ГЎГ«Г®ГЄ
 	------------------------------------------------------------
 	imgui.BeginChild('##5', imgui.ImVec2(190, 180), true)
-	imgui.Text(u8'Разное')
+	imgui.Text(u8'ГђГ Г§Г­Г®ГҐ')
 	imgui.Separator()
-		if imgui.Button(u8'Починка', btn_size) then
+		if imgui.Button(u8'ГЏГ®Г·ГЁГ­ГЄГ ', btn_size) then
 		sampSendChat("/repcar")
 		end
-		if imgui.Button(u8'Заправка', btn_size) then
+		if imgui.Button(u8'Г‡Г ГЇГ°Г ГўГЄГ ', btn_size) then
 		sampSendChat("/fillcar")
 		end
-		if imgui.Button(u8'Броня', btn_size) then
+		if imgui.Button(u8'ГЃГ°Г®Г­Гї', btn_size) then
 		lua_thread.create(function()
 		mainIni = inicfg.load(nil, directIni)
 			sampSendChat("/me "..mainIni.roleplay.armour)
@@ -199,7 +196,7 @@ function imgui.OnDrawFrame()
 			sampSendChat("/armour")
 		end)
 		end
-		if imgui.Button(u8'Маска', btn_size) then
+		if imgui.Button(u8'ГЊГ Г±ГЄГ ', btn_size) then
 		lua_thread.create(function()
 		mainIni = inicfg.load(nil, directIni)
 			sampSendChat("/me "..mainIni.roleplay.mask)
@@ -207,14 +204,14 @@ function imgui.OnDrawFrame()
 			sampSendChat("/mask")
 		end)
 		end
-		if imgui.Button(u8'Тест', btn_size) then
+		if imgui.Button(u8'Г’ГҐГ±ГІ', btn_size) then
 		sampIsChatInputActive(true)
 		sampSetChatInputText('/gps')
 		end
-		if imgui.Button(u8'Употребить 3г нарко', btn_size) then
+		if imgui.Button(u8'Г“ГЇГ®ГІГ°ГҐГЎГЁГІГј 3ГЈ Г­Г Г°ГЄГ®', btn_size) then
 		lua_thread.create(function()
 		mainIni = inicfg.load(nil, directIni)
-			sampSendChat("/me достал таблетку анальгина и закинул в рот")
+			sampSendChat("/me Г¤Г®Г±ГІГ Г« ГІГ ГЎГ«ГҐГІГЄГі Г Г­Г Г«ГјГЈГЁГ­Г  ГЁ Г§Г ГЄГЁГ­ГіГ« Гў Г°Г®ГІ")
 				wait(1000)
 			sampSendChat("/usedrugs 3")
 		end)
@@ -224,26 +221,26 @@ function imgui.OnDrawFrame()
 	
 	imgui.SameLine()
 	
-	--6 блок
+	--6 ГЎГ«Г®ГЄ
 	------------------------------------------------------------
 	imgui.BeginChild('##6', imgui.ImVec2(190, 180), true)
-	imgui.Text(u8'Полезности')
+	imgui.Text(u8'ГЏГ®Г«ГҐГ§Г­Г®Г±ГІГЁ')
 	imgui.Separator()
-		imgui.Text(u8'АвтоЕда')
-		imgui.SameLine( ) ShowHelpMarker(u8'ОСТОРОЖНО! Данная функция запрещена на сервере и карается баном!')
+		imgui.Text(u8'ГЂГўГІГ®Г…Г¤Г ')
+		imgui.SameLine( ) ShowHelpMarker(u8'ГЋГ‘Г’ГЋГђГЋГ†ГЌГЋ! Г„Г Г­Г­Г Гї ГґГіГ­ГЄГ¶ГЁГї Г§Г ГЇГ°ГҐГ№ГҐГ­Г  Г­Г  Г±ГҐГ°ГўГҐГ°ГҐ ГЁ ГЄГ Г°Г ГҐГІГ±Гї ГЎГ Г­Г®Г¬!')
 		imgui.SameLine()
 		imgui.SetCursorPos(imgui.ImVec2(155, 30))
 		if imgui.ToggleButton("aeat", imBool1) then
 			a = not a
 		end
-		imgui.Text(u8'АнтиАфк')
+		imgui.Text(u8'ГЂГ­ГІГЁГЂГґГЄ')
 		imgui.SameLine()
 		imgui.SetCursorPos(imgui.ImVec2(155, 57))
 		if imgui.ToggleButton("aafk", imBool2) then
 			aAfk()
 		end
 		imgui.Text('Hide')
-		imgui.SameLine( ) ShowHelpMarker(u8'Скрывает игроков в зоне прорисовки. Для того, чтобы они снова появились, нужно зайти в любой интерьер. ФУНКЦИЯ ЗАПРЕЩЕНА НА СЕРВЕРЕ!')
+		imgui.SameLine( ) ShowHelpMarker(u8'Г‘ГЄГ°Г»ГўГ ГҐГІ ГЁГЈГ°Г®ГЄГ®Гў Гў Г§Г®Г­ГҐ ГЇГ°Г®Г°ГЁГ±Г®ГўГЄГЁ. Г„Г«Гї ГІГ®ГЈГ®, Г·ГІГ®ГЎГ» Г®Г­ГЁ Г±Г­Г®ГўГ  ГЇГ®ГїГўГЁГ«ГЁГ±Гј, Г­ГіГ¦Г­Г® Г§Г Г©ГІГЁ Гў Г«ГѕГЎГ®Г© ГЁГ­ГІГҐГ°ГјГҐГ°. Г”Г“ГЌГЉГ–Г€Гџ Г‡ГЂГЏГђГ…Г™Г…ГЌГЂ ГЌГЂ Г‘Г…ГђГ‚Г…ГђГ…!')
 		imgui.SameLine()
 		imgui.SetCursorPos(imgui.ImVec2(155, 84))
 		if imgui.ToggleButton("hide", imBool3) then
@@ -262,27 +259,27 @@ repeat wait(0) until isSampAvailable()
 lua_thread.create(eat)
    sampRegisterChatCommand('/goeat', function() 
       g = not g
-      sampAddChatMessage(g and "{0x21dfb9}АвтоЕда включена!" or "{0xe8482c}АвтоЕда выключена!", -1)
+      sampAddChatMessage(g and "{0x21dfb9}ГЂГўГІГ®Г…Г¤Г  ГўГЄГ«ГѕГ·ГҐГ­Г !" or "{0xe8482c}ГЂГўГІГ®Г…Г¤Г  ГўГ»ГЄГ«ГѕГ·ГҐГ­Г !", -1)
    end)
    sampRegisterChatCommand('/eat', function() sampSendClickTextdraw(646) end)
    sampRegisterChatCommand('/hp', function() sampSendClickTextdraw(644) end)
    sampRegisterChatCommand('getinfo', cmd_getinfo)
    sampRegisterChatCommand('setinfo', cmd_setinfo)
    
-   sampAddChatMessage(string.format("{f93f00} [Mescaline binder] загружен!", -1), -1)
-   sampAddChatMessage(string.format("{f93f00} [Активация]: {e8e632}Q+E как чит код.", -1), -1)
-   sampAddChatMessage(string.format("{f93f00} [Автор]: {e8e632}Sergey_Mescaline | vk.com/irbis_st", -1), -1)
+   sampAddChatMessage(string.format("{f93f00} [Mescaline binder] Г§Г ГЈГ°ГіГ¦ГҐГ­!", -1), -1)
+   sampAddChatMessage(string.format("{f93f00} [ГЂГЄГІГЁГўГ Г¶ГЁГї]: {e8e632}Q+E ГЄГ ГЄ Г·ГЁГІ ГЄГ®Г¤.", -1), -1)
+   sampAddChatMessage(string.format("{f93f00} [ГЂГўГІГ®Г°]: {e8e632}Sergey_Mescaline | vk.com/irbis_st", -1), -1)
   
   while true do wait(0)
     --if isKeyJustPressed(0x72) then
         --wind.v = not wind.v
     --end
-	--Активация
+	--ГЂГЄГІГЁГўГ Г¶ГЁГї
     if isKeyDown(key.VK_Q) and isKeyJustPressed(key.VK_E) and not sampIsChatInputActive() and not sampIsDialogActive() and not isPauseMenuActive() and not isSampfuncsConsoleActive() then
         wind.v = not wind.v
     end
 	------------
-	-- Получение айди игрока в прицеле
+	-- ГЏГ®Г«ГіГ·ГҐГ­ГЁГҐ Г Г©Г¤ГЁ ГЁГЈГ°Г®ГЄГ  Гў ГЇГ°ГЁГ¶ГҐГ«ГҐ
 	local valid, ped = getCharPlayerIsTargeting(PLAYER_HANDLE)
     if valid and doesCharExist(ped) then
 		local result, id = sampGetPlayerIdByCharHandle(ped)
@@ -303,14 +300,14 @@ function aAfk()
         memory.fill(7623723, 144, 8)
         memory.fill(5499528, 144, 6)
         addOneOffSound(0.0, 0.0, 0.0, 1136)
-        sampAddChatMessage("•   {1E90FF}Anti AFK{808080}  |  {90EE90}Активирован!", 0xFFFFFF)
+        sampAddChatMessage("В•   {1E90FF}Anti AFK{808080}  |  {90EE90}ГЂГЄГІГЁГўГЁГ°Г®ГўГ Г­!", 0xFFFFFF)
     else
         writeMemory(7634870, 1, 0, 0)
         writeMemory(7635034, 1, 0, 0)
         memory.hex2bin('5051FF1500838500', 7623723, 8)
         memory.hex2bin('0F847B010000', 5499528, 6)
         addOneOffSound(0.0, 0.0, 0.0, 1136)
-        sampAddChatMessage("•   {1E90FF}Anti AFK{808080}  |  {FA8072}Деактивирован!", 0xFFFFFF)
+        sampAddChatMessage("В•   {1E90FF}Anti AFK{808080}  |  {FA8072}Г„ГҐГ ГЄГІГЁГўГЁГ°Г®ГўГ Г­!", 0xFFFFFF)
     end
 end
 
@@ -366,7 +363,7 @@ end
 
 
 
---СТИЛИ
+--Г‘Г’Г€Г‹Г€
 function red_style()
     imgui.SwitchContext()
     local style = imgui.GetStyle()
@@ -630,21 +627,21 @@ function autoupdate(json_url, prefix, url)
               lua_thread.create(function(prefix)
                 local dlstatus = require('moonloader').download_status
                 local color = -1
-                sampAddChatMessage((prefix..'Обнаружено обновление. Пытаюсь обновиться c '..thisScript().version..' на '..updateversion), color)
+                sampAddChatMessage((prefix..'ГЋГЎГ­Г Г°ГіГ¦ГҐГ­Г® Г®ГЎГ­Г®ГўГ«ГҐГ­ГЁГҐ. ГЏГ»ГІГ ГѕГ±Гј Г®ГЎГ­Г®ГўГЁГІГјГ±Гї c '..thisScript().version..' Г­Г  '..updateversion), color)
                 wait(250)
                 downloadUrlToFile(updatelink, thisScript().path,
                   function(id3, status1, p13, p23)
                     if status1 == dlstatus.STATUS_DOWNLOADINGDATA then
-                      print(string.format('Загружено %d из %d.', p13, p23))
+                      print(string.format('Г‡Г ГЈГ°ГіГ¦ГҐГ­Г® %d ГЁГ§ %d.', p13, p23))
                     elseif status1 == dlstatus.STATUS_ENDDOWNLOADDATA then
-                      print('Загрузка обновления завершена.')
-                      sampAddChatMessage((prefix..'Обновление завершено!'), color)
+                      print('Г‡Г ГЈГ°ГіГ§ГЄГ  Г®ГЎГ­Г®ГўГ«ГҐГ­ГЁГї Г§Г ГўГҐГ°ГёГҐГ­Г .')
+                      sampAddChatMessage((prefix..'ГЋГЎГ­Г®ГўГ«ГҐГ­ГЁГҐ Г§Г ГўГҐГ°ГёГҐГ­Г®!'), color)
                       goupdatestatus = true
                       lua_thread.create(function() wait(500) thisScript():reload() end)
                     end
                     if status1 == dlstatus.STATUSEX_ENDDOWNLOAD then
                       if goupdatestatus == nil then
-                        sampAddChatMessage((prefix..'Обновление прошло неудачно. Запускаю устаревшую версию..'), color)
+                        sampAddChatMessage((prefix..'ГЋГЎГ­Г®ГўГ«ГҐГ­ГЁГҐ ГЇГ°Г®ГёГ«Г® Г­ГҐГіГ¤Г Г·Г­Г®. Г‡Г ГЇГіГ±ГЄГ Гѕ ГіГ±ГІГ Г°ГҐГўГёГіГѕ ГўГҐГ°Г±ГЁГѕ..'), color)
                         update = false
                       end
                     end
@@ -654,11 +651,11 @@ function autoupdate(json_url, prefix, url)
               )
             else
               update = false
-              print('v'..thisScript().version..': Обновление не требуется.')
+              print('v'..thisScript().version..': ГЋГЎГ­Г®ГўГ«ГҐГ­ГЁГҐ Г­ГҐ ГІГ°ГҐГЎГіГҐГІГ±Гї.')
             end
           end
         else
-          print('v'..thisScript().version..': Не могу проверить обновление. Смиритесь или проверьте самостоятельно на '..url)
+          print('v'..thisScript().version..': ГЌГҐ Г¬Г®ГЈГі ГЇГ°Г®ГўГҐГ°ГЁГІГј Г®ГЎГ­Г®ГўГ«ГҐГ­ГЁГҐ. Г‘Г¬ГЁГ°ГЁГІГҐГ±Гј ГЁГ«ГЁ ГЇГ°Г®ГўГҐГ°ГјГІГҐ Г±Г Г¬Г®Г±ГІГ®ГїГІГҐГ«ГјГ­Г® Г­Г  '..url)
           update = false
         end
       end
