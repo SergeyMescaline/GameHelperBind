@@ -1,6 +1,6 @@
 script_name('GameHelperBind')
 script_author('Sergey_Mescaline')
-script_version("07.11.2019")
+script_version("08.11.2019")
 
 require 'lib.moonloader'
 local inicfg = require'inicfg'
